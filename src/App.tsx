@@ -5,6 +5,7 @@ import Dashboard from "./pages/dashboard";
 import Login from "./pages/login";
 import Profile from "./pages/profile";
 import Register from "./pages/register";
+import GasRequest from "./pages/request";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="profile" element={<Profile />} />
+          <Route path="request" element={<GasRequest />} />
         </Route>
 
         <Route path="/signup" element={<RootLayout />} />

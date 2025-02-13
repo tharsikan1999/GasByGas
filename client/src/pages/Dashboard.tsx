@@ -23,7 +23,7 @@ const Dashboard = () => {
             className=" text-slate-700 font-semibold text-2xl cursor-pointer"
             onClick={() => navigate("/")}
           >
-            ABC Restaurant
+            GasByGas
           </p>
           <div className="h-full flex items-center space-x-5">
             {auth.role === "ADMIN" ? (

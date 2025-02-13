@@ -10,7 +10,7 @@ import { useLogoutMutation } from "../../query/common/query";
 import Spinner from "../../animation/Spinner";
 import { FetchAllItemsData } from "../../api/item/Api";
 import { useQuery } from "@tanstack/react-query";
-import PizzaImg from "../../../public/Images/pizzaImg.jpg";
+import PizzaImg from "../../../public/Images/gas.jpg";
 
 interface Pizza {
   id: number;
@@ -78,67 +78,79 @@ const HomePge = () => {
   if (isError) return `Error: ${error.message}`;
 
   return (
-    <div className="w-full min-h-screen relative  pb-20">
+    <div className="w-full min-h-screen relative bg-gray-50 pb-20">
       {auth.accessToken ? null : (
         <AuthModal isOpen={isOpen} setIsOpen={setIsOpen} />
       )}
       <Contact isOpen={isContactOpen} setIsOpen={setIsContactOpen} />
       <OrderItem isOpen={isOderOpen} setIsOpen={setIsOrderOpen} pizza={pizza} />
-      <div className="max-w-max1366  mx-auto w-full flex  flex-col z">
-        <div className=" h-20 flex justify-between items-center">
-          <p
-            className=" text-slate-700 font-semibold text-2xl cursor-pointer"
-            onClick={() => navigate("/")}
-          >
-            ABC Restaurant
-          </p>
 
-          <div className=" h-full flex items-center space-x-5">
-            {auth.accessToken ? null : (
-              <Button text="Login" onClick={() => setIsOpen(true)} />
-            )}
-            <Button text="contact" onClick={() => setIsContactOpen(true)} />
-            {auth.accessToken ? (
+      {/* Navigation Bar */}
+      <div className="max-w-7xl mx-auto w-full flex justify-between items-center py-6 px-4">
+        <p
+          className="text-slate-700 font-bold text-3xl cursor-pointer hover:text-red-600 transition duration-300"
+          onClick={() => navigate("/")}
+        >
+          GasByGas
+        </p>
+
+        <div className="flex items-center space-x-5">
+          {auth.accessToken ? null : (
+            <Button text="Login" onClick={() => setIsOpen(true)} />
+          )}
+          <Button text="Contact" onClick={() => setIsContactOpen(true)} />
+          {auth.accessToken && (
+            <>
               <Button text="Dashboard" onClick={() => navigate("/dashboard")} />
-            ) : null}
-            {auth.accessToken ? (
               <Button text="LogOut" onClick={handleLogout} />
-            ) : null}
-          </div>
+            </>
+          )}
         </div>
+      </div>
+      {/* Hero Section */}
+      <div
+        className="w-full h-[40vh] flex items-center justify-center text-white bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${PizzaImg})` }}
+      >
+        <div className="text-center bg-black/50 p-6 rounded-md">
+          <h1 className="text-5xl font-bold mb-4">Welcome to GasByGas!</h1>
+          <p className="text-lg mb-6">Delicious Pizzas Delivered Hot & Fresh</p>
+        </div>
+      </div>
+
+      {/* Menu Items Section */}
+      <div className="max-w-7xl mx-auto w-full px-4 pt-10">
         {AllItemsData?.length === 0 ? (
-          <p className="text-center text-xl font-semibold mt-10 text-slate-800/90">
+          <p className="text-center text-2xl font-semibold mt-10 text-slate-800/90">
             No data available
           </p>
         ) : (
-          <div className=" grid  grid-cols-5 pt-10 gap-x-6 gap-y-14 z-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {AllItemsData?.map((pizza, index) => (
-              <div key={index} className="">
+              <div
+                key={index}
+                className="bg-white rounded-lg shadow-md hover:shadow-lg transition duration-300"
+              >
                 <div
-                  className="w-full rounded-md h-52 bg-cover bg-center bg-no-repeat "
+                  className="w-full rounded-t-lg h-52 bg-cover bg-center bg-no-repeat"
                   style={{
                     backgroundImage: `url(${pizza.imagePath || PizzaImg})`,
                   }}
                 />
-                <div className="w-full flex justify-between py-3 px-1">
-                  <p className="font-semibold text-lg text-slate-800/90">
+                <div className="p-4">
+                  <h3 className="font-bold text-xl text-slate-800/90 mb-2">
                     {pizza.name}
-                  </p>
-                  <p className="font-semibold text-lg text-slate-600/90">
+                  </h3>
+                  <p className="font-semibold text-lg text-slate-600/90 mb-4">
                     RS. {pizza.price}
                   </p>
-                </div>
-                <button
-                  className="w-full flex justify-center mt-1"
-                  disabled={pizza.isAvailable ? false : true}
-                >
                   <Button
                     text={`${
                       pizza.isAvailable ? "Order Now" : "Not Available"
                     }`}
                     onClick={() => handleOrder(pizza)}
                   />
-                </button>
+                </div>
               </div>
             ))}
           </div>

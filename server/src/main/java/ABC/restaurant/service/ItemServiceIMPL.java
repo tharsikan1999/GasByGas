@@ -24,7 +24,7 @@ public class ItemServiceIMPL implements  ItemService{
     @Autowired
     UserRepo userRepo;
 
-    private final String FOLDER_PATH="/home/tharsikan/Desktop/ABC-Restaurant-Management-System/client/public/Images";
+    private final String FOLDER_PATH="/home/tharsikan/Desktop/GasByGas/client/public/Images";
 
     @Override
     public RegisterResponse addItem(ItemDto itemDto,String imagePath) {

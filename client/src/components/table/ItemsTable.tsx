@@ -1,4 +1,4 @@
-import PizzaImg from "../../../public/Images/pizzaImg.jpg";
+import PizzaImg from "../../../public/Images/gas.jpg";
 import Spinner from "../../animation/Spinner";
 import { FetchAllItemsData } from "../../api/item/Api";
 import { useQuery } from "@tanstack/react-query";

@@ -19,7 +19,7 @@ public class EmailSenderServiceImpl implements EmailSenderService {
     public void sendEmail(String name, String to, String subject, String message) {
         SimpleMailMessage simpleMailMessage = new SimpleMailMessage();
 
-        String customizedMessage = "Dear " + name + ",\n\n" + message + "\n\nBest regards,\nABC Restaurant";
+        String customizedMessage = "Dear " + name + ",\n\n" + message + "\n\nBest regards,\nGasByGas Team";
 
         simpleMailMessage.setTo(to);
         simpleMailMessage.setSubject(subject);
